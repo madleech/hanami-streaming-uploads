@@ -14,6 +14,9 @@ gem "falcon", "~> 0.47"
 gem "rake"
 
 gem "aws-sdk-s3", "~> 1.136"
+gem "base64"
+
+gem "protocol-http", git: "https://github.com/socketry/protocol-http", branch: "more-compatible-read_partial"
 
 group :development do
   gem "hanami-webconsole", "~> 2.1"

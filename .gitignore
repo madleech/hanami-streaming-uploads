@@ -3,4 +3,4 @@ log/*
 public/
 node_modules/
 spec/examples.txt
-test.mp4
+test.*.*
