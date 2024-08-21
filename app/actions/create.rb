@@ -21,12 +21,14 @@ module Upload
 
         logger.info("Starting to upload to S3, size = #{request.env["CONTENT_LENGTH"].to_i}")
 
-        body = request.env["rack.input"]
-
+        body = request.env["rack.input"].body
+        length = body.length
+        input = Protocol::Rack::Input.new(Protocol::HTTP::Body::Rewindable.new(body))
+        
         # ref: https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Object.html#put-instance_method
         result = s3_object.put(
-          body:,
-          content_length: request.env["CONTENT_LENGTH"].to_i
+          body: input,
+          content_length: length,
         )
 
         logger.info("Finished S3 upload")
